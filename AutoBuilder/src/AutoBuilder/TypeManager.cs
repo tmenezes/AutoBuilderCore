@@ -68,7 +68,7 @@ namespace AutoBuilder
             var hasAnyProperty = type.GetRuntimeProperties().Any();
             var isString = type == typeof(string);
             var isDateTima = type == typeof(DateTime);
-            var isNullable = type.Namespace.Contains(typeof(Nullable).Namespace);
+            var isNullable = Nullable.GetUnderlyingType(type) != null; //type.Namespace.Contains(typeof(Nullable).Namespace);
 
             return hasAnyProperty && !isString && !isDateTima && !isNullable;
         }
@@ -76,6 +76,21 @@ namespace AutoBuilder
         public static bool IsNullableType<T>(Type type) where T : struct
         {
             return type == typeof(T?);
+        }
+
+        public static bool IsNullableTypeOfEnum(Type type)
+        {
+            var underlyingType = Nullable.GetUnderlyingType(type);
+
+            return underlyingType?.GetTypeInfo().IsEnum ?? false;
+        }
+
+        public static bool IsEnum(Type type)
+        {
+            if (type.GetTypeInfo().IsEnum)
+                return true;
+
+            return IsNullableTypeOfEnum(type);
         }
 
 
