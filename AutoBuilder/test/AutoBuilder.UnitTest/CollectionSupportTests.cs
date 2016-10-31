@@ -44,18 +44,26 @@ namespace AutoBuilder.UnitTest
         }
 
         [Fact]
-        public void Should_fill_array_property_successfully()
+        public void Should_fill_IList_property_successfully()
         {
-            Assert.NotNull(instance.ArrayProperty);
-            Assert.True(instance.ArrayProperty.Any());
+            Assert.NotNull(instance.IListProperty);
+            Assert.True(instance.IListProperty.Any());
         }
+
+        //[Fact]
+        //public void Should_fill_array_property_successfully()
+        //{
+        //    Assert.NotNull(instance.ArrayProperty);
+        //    Assert.True(instance.ArrayProperty.Any());
+        //}
     }
 
     internal class CollectionTestClass
     {
         public string SomeProperty { get; set; }
         public IEnumerable<PrimitiveTypeOnlyClass> CollectionProperty { get; set; }
-        public IList<PrimitiveTypeOnlyClass> ListProperty { get; set; }
-        public PrimitiveTypeOnlyClass[] ArrayProperty { get; set; }
+        public List<PrimitiveTypeOnlyClass> ListProperty { get; set; }
+        public IList<PrimitiveTypeOnlyClass> IListProperty { get; set; }
+        //public PrimitiveTypeOnlyClass[] ArrayProperty { get; set; }
     }
 }
