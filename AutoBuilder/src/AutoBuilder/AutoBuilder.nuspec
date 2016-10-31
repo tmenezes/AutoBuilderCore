@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>AutoBuilderCore</id>
+    <version>1.0.0</version>
+    <title>AutoBuilder for .Net Core</title>
+    <authors>Thiago Menezes</authors>
+    <owners>Thiago Menezes</owners>
+    <projectUrl>https://github.com/tmenezes/AutoBuilderCore</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>AutoBuilder is a .Net Core library that makes easy creation of objects graphs filled of data. It is a tool for building unit tests arranges.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>AutoBuilder UnitTest Arrange Test Setup</tags>
+  </metadata>
+  <files>
+    <file src="bin/Release/netstandard1.6/AutoBuilder.dll" target="lib\netstandard1.6" />
+  </files>
+</package>
