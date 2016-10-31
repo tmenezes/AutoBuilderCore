@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -9,7 +10,7 @@ namespace AutoBuilder
     public static class TypeManager
     {
         private static readonly List<Type> _collections = new List<Type>() { typeof(IEnumerable<>), typeof(IEnumerable) };
-        private static readonly Dictionary<Type, IEnumerable<PropertyInfo>> _properties;
+        private static readonly IDictionary<Type, IEnumerable<PropertyInfo>> _properties;
 
         static TypeManager()
         {
@@ -19,19 +20,22 @@ namespace AutoBuilder
 
         public static void LoadType(Type type)
         {
-            if (IsAlreadyLoaded(type))
+            lock (type)
             {
-                return;
-            }
+                if (IsAlreadyLoaded(type))
+                {
+                    return;
+                }
 
-            var props = type.GetRuntimeProperties().Where(p => IsWritableProperty(p)).ToList();
-            var complexTypeProps = props.Where(p => IsComplexType(p.PropertyType) && !IsAlreadyLoaded(p.PropertyType));
+                var props = type.GetRuntimeProperties().Where(p => IsWritableProperty(p)).ToList();
+                var complexTypeProps = props.Where(p => IsComplexType(p.PropertyType) && !IsAlreadyLoaded(p.PropertyType)).ToList();
 
-            _properties.Add(type, props);
+                _properties.Add(type, props);
 
-            foreach (var prop in complexTypeProps)
-            {
-                LoadType(prop.PropertyType);
+                foreach (var prop in complexTypeProps)
+                {
+                    LoadType(prop.PropertyType);
+                }
             }
         }
 

@@ -73,10 +73,10 @@ namespace AutoBuilder.UnitTest
             Assert.True(instance.DateTimeProperty.Year > 0);
             Assert.True(instance.DateTimeProperty.Month > 0);
             Assert.True(instance.DateTimeProperty.Day > 0);
-            Assert.True(instance.DateTimeProperty.Hour > 0);
-            Assert.True(instance.DateTimeProperty.Minute > 0);
-            Assert.True(instance.DateTimeProperty.Second > 0);
-            Assert.True(instance.DateTimeProperty.Millisecond > 0);
+            Assert.True(instance.DateTimeProperty.Hour >= 0 && instance.DateTimeProperty.Hour <= 23);
+            Assert.True(instance.DateTimeProperty.Minute >= 0 && instance.DateTimeProperty.Minute <= 59);
+            Assert.True(instance.DateTimeProperty.Second >= 0 && instance.DateTimeProperty.Second <= 59);
+            Assert.True(instance.DateTimeProperty.Millisecond >= 0 && instance.DateTimeProperty.Millisecond <= 999);
         }
 
         [Fact]
@@ -86,10 +86,10 @@ namespace AutoBuilder.UnitTest
             Assert.True(instance.DateTimeNullableProperty.Value.Year > 0);
             Assert.True(instance.DateTimeNullableProperty.Value.Month > 0);
             Assert.True(instance.DateTimeNullableProperty.Value.Day > 0);
-            Assert.True(instance.DateTimeNullableProperty.Value.Hour > 0);
-            Assert.True(instance.DateTimeNullableProperty.Value.Minute > 0);
-            Assert.True(instance.DateTimeNullableProperty.Value.Second > 0);
-            Assert.True(instance.DateTimeNullableProperty.Value.Millisecond > 0);
+            Assert.True(instance.DateTimeNullableProperty.Value.Hour >= 0 && instance.DateTimeNullableProperty.Value.Hour <= 23);
+            Assert.True(instance.DateTimeNullableProperty.Value.Minute >= 0 && instance.DateTimeNullableProperty.Value.Minute <= 59);
+            Assert.True(instance.DateTimeNullableProperty.Value.Second >= 0 && instance.DateTimeNullableProperty.Value.Second <= 59);
+            Assert.True(instance.DateTimeNullableProperty.Value.Millisecond >= 0 && instance.DateTimeNullableProperty.Value.Millisecond <= 999);
         }
 
         [Fact]

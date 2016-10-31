@@ -7,7 +7,13 @@ namespace AutoBuilder.FillingStrategy
     {
         // private static 
         private static IValueGenerator defaultValueGenerator = new DefaultValueGenerator();
-        private static Dictionary<Type, IValueGenerator> _generators;
+        private static IDictionary<Type, IValueGenerator> _generators;
+
+        static ValueGeneratorFactory()
+        {
+            EnsureGeneratorsDictionaryCreated();
+        }
+
 
         public static IValueGenerator GetValueGenerator<T>()
         {
@@ -16,8 +22,6 @@ namespace AutoBuilder.FillingStrategy
 
         public static IValueGenerator GetValueGenerator(Type type)
         {
-            EnsureGeneratorsDictionaryCreated();
-
             if (!_generators.ContainsKey(type))
             {
                 AddValueGeneratorFor(type);
@@ -62,7 +66,11 @@ namespace AutoBuilder.FillingStrategy
                 ? new ComplexTypeValueGenerator(type)
                 : defaultValueGenerator;
 
-            _generators.Add(type, valueGenerator);
+            lock ("lock_AddValueGeneratorFor")
+            {
+                if (!_generators.ContainsKey(type))
+                    _generators.Add(type, valueGenerator);
+            }
         }
     }
 }
