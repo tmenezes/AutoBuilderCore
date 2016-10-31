@@ -18,7 +18,10 @@ namespace AutoBuilder.FillingStrategy
 
             foreach (var prop in properties)
             {
-                context.CurrentProperty = prop;
+                if (context.IsCircularReference(prop.PropertyType))
+                    continue;
+
+                context.SetCurrentProperty(prop);
 
                 var generator = ValueGeneratorFactory.GetValueGenerator(prop.PropertyType);
                 var value = generator.GenerateValue(context);
