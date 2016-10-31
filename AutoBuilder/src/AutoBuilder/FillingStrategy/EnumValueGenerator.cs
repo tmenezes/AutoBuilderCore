@@ -8,9 +8,9 @@ namespace AutoBuilder.FillingStrategy
 
         public object GenerateValue(BuilderContext context)
         {
-            var enumType = TypeManager.IsNullableTypeOfEnum(context.CurrentProperty.PropertyType)
-                ? Nullable.GetUnderlyingType(context.CurrentProperty.PropertyType)
-                : context.CurrentProperty.PropertyType;
+            var enumType = TypeManager.IsNullableTypeOfEnum(context.GetCurrentPropertyReflectedType())
+                ? Nullable.GetUnderlyingType(context.GetCurrentPropertyReflectedType())
+                : context.GetCurrentPropertyReflectedType();
 
             var enumValues = Enum.GetValues(enumType);
             var index = _random.Next(0, enumValues.Length - 1);

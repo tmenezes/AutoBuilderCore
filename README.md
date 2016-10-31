@@ -16,6 +16,7 @@ var myClassInstance = new Builder<MyClass>().Build();
 1. Enum support
 
 ## Types supporteds
+1. **User defined** types
 1. string (propertyname + GUID)
 1. int, short, long (random numbers)
 1. float, double, decimal (random float numbers)
@@ -23,5 +24,4 @@ var myClassInstance = new Builder<MyClass>().Build();
 1. bool 
 1. DateTime
 1. IEnumerable<T>, IList<T>, List<T>, Array
-1. User defined types
 1. Enums

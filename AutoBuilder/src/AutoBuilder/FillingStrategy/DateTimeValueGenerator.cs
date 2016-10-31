@@ -18,7 +18,7 @@ namespace AutoBuilder.FillingStrategy
 
             var datetime = new DateTime(year, month, day, hour, minute, second, milisecond);
 
-            return TypeManager.IsNullableType<DateTime>(context.CurrentProperty.PropertyType)
+            return TypeManager.IsNullableType<DateTime>(context.GetCurrentPropertyReflectedType())
                 ? (DateTime?)datetime
                 : datetime;
         }

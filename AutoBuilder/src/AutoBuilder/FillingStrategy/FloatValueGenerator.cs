@@ -23,7 +23,7 @@ namespace AutoBuilder.FillingStrategy
 
         public object GenerateValue(BuilderContext context)
         {
-            var type = context.CurrentProperty.PropertyType;
+            var type = context.GetCurrentPropertyReflectedType();
 
             return _generatorFunc[type].Invoke();
         }

@@ -18,7 +18,7 @@ namespace AutoBuilder.FillingStrategy
 
             foreach (var prop in properties)
             {
-                if (context.IsCircularReference(prop.PropertyType))
+                if (context.IsInCircularReference(prop.PropertyType))
                     continue;
 
                 context.SetCurrentProperty(prop);

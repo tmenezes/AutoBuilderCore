@@ -12,7 +12,7 @@ namespace AutoBuilder.UnitTest
 
         // arrange / act
         public CircularReferenceTests()
-        {
+        {            
             instance = new Builder<ReferenceCircularTestClass>().Build();
         }
 

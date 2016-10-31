@@ -96,6 +96,13 @@ namespace AutoBuilder
             return IsCollection(type) && type.GetElementType() != null;
         }
 
+        public static Type GetCollectionItemType(Type type)
+        {
+            return IsCollection(type)
+                ? type.GetElementType() ?? type.GetTypeInfo().GenericTypeArguments.First()
+                : null;
+        }
+
 
         private static bool IsWritableProperty(PropertyInfo p)
         {
