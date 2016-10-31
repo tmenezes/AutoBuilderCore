@@ -6,7 +6,7 @@ namespace AutoBuilder.FillingStrategy
     {
         public object GenerateValue(BuilderContext context)
         {
-            return Activator.CreateInstance(context.GetCurrentPropertyReflectedType());
+            return Activator.CreateInstance(context.CurrentValueGeneratorType);
         }
     }
 }

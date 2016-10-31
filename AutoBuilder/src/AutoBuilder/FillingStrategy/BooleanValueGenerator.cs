@@ -10,7 +10,7 @@ namespace AutoBuilder.FillingStrategy
         {
             var value = _random.Next() % 2 == 0;
 
-            return TypeManager.IsNullableType<bool>(context.GetCurrentPropertyReflectedType())
+            return TypeManager.IsNullableType<bool>(context.CurrentValueGeneratorType)
                        ? (bool?)value
                        : value;
         }

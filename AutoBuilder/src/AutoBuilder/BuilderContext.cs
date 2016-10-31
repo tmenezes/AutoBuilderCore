@@ -44,10 +44,21 @@ namespace AutoBuilder
         {
             CurrentProperty = property;
             CurrentPropertyIsCollection = TypeManager.IsCollection(property.PropertyType);
+            CurrentValueGeneratorType = property.PropertyType;
 
             if (TypeManager.IsComplexType(property.PropertyType))
             {
                 ComplexTypesBuilded.Add(property.PropertyType);
+            }
+        }
+
+        public void SetCurrentValueGeneratorType(Type type)
+        {
+            CurrentValueGeneratorType = type;
+
+            if (TypeManager.IsComplexType(type))
+            {
+                ComplexTypesBuilded.Add(type);
             }
         }
 

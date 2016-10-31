@@ -22,26 +22,26 @@ namespace AutoBuilder.UnitTest
             Assert.NotNull(instance);
         }
 
-        //[Fact]
-        //public void Should_fill_string_property_successfully()
-        //{
-        //    Assert.NotNull(instance.SomeProperty);
-        //    Assert.NotEmpty(instance.SomeProperty);
-        //}
+        [Fact]
+        public void Should_fill_string_property_successfully()
+        {
+            Assert.NotNull(instance.SomeProperty);
+            Assert.NotEmpty(instance.SomeProperty);
+        }
 
-        //[Fact]
-        //public void Should_fill_collection_property_successfully()
-        //{
-        //    Assert.NotNull(instance.CollectionProperty);
-        //    Assert.True(instance.CollectionProperty.Any());
-        //}
+        [Fact]
+        public void Should_fill_collection_property_successfully()
+        {
+            Assert.NotNull(instance.CollectionProperty);
+            Assert.True(instance.CollectionProperty.Any());
+        }
 
-        //[Fact]
-        //public void Should_fill_list_property_successfully()
-        //{
-        //    Assert.NotNull(instance.ListProperty);
-        //    Assert.True(instance.ListProperty.Any());
-        //}
+        [Fact]
+        public void Should_fill_list_property_successfully()
+        {
+            Assert.NotNull(instance.ListProperty);
+            Assert.True(instance.ListProperty.Any());
+        }
 
         [Fact]
         public void Should_fill_list_of_int_property_successfully()
@@ -50,28 +50,44 @@ namespace AutoBuilder.UnitTest
             Assert.True(instance.ListOfIntProperty.Any());
         }
 
-        //[Fact]
-        //public void Should_fill_IList_property_successfully()
-        //{
-        //    Assert.NotNull(instance.IListProperty);
-        //    Assert.True(instance.IListProperty.Any());
-        //}
+        [Fact]
+        public void Should_fill_list_of_string_property_successfully()
+        {
+            Assert.NotNull(instance.ListOfStringProperty);
+            Assert.True(instance.ListOfStringProperty.Any());
+        }
 
-        //[Fact]
-        //public void Should_fill_array_property_successfully()
-        //{
-        //    Assert.NotNull(instance.ArrayProperty);
-        //    Assert.True(instance.ArrayProperty.Any());
-        //}
+        [Fact]
+        public void Should_fill_list_of_double_property_successfully()
+        {
+            Assert.NotNull(instance.ListOfDoubleProperty);
+            Assert.True(instance.ListOfDoubleProperty.Any());
+        }
+
+        [Fact]
+        public void Should_fill_IList_property_successfully()
+        {
+            Assert.NotNull(instance.IListProperty);
+            Assert.True(instance.IListProperty.Any());
+        }
+
+        [Fact]
+        public void Should_fill_array_property_successfully()
+        {
+            Assert.NotNull(instance.ArrayProperty);
+            Assert.True(instance.ArrayProperty.Any());
+        }
     }
 
     internal class CollectionTestClass
     {
-        //public string SomeProperty { get; set; }
-        //public IEnumerable<PrimitiveTypeOnlyClass> CollectionProperty { get; set; }
-        //public List<PrimitiveTypeOnlyClass> ListProperty { get; set; }
+        public string SomeProperty { get; set; }
+        public IEnumerable<PrimitiveTypeOnlyClass> CollectionProperty { get; set; }
+        public List<PrimitiveTypeOnlyClass> ListProperty { get; set; }
         public List<int> ListOfIntProperty { get; set; }
-        //public IList<PrimitiveTypeOnlyClass> IListProperty { get; set; }
-        //public PrimitiveTypeOnlyClass[] ArrayProperty { get; set; }
+        public List<string> ListOfStringProperty { get; set; }
+        public List<double> ListOfDoubleProperty { get; set; }
+        public IList<PrimitiveTypeOnlyClass> IListProperty { get; set; }
+        public PrimitiveTypeOnlyClass[] ArrayProperty { get; set; }
     }
 }

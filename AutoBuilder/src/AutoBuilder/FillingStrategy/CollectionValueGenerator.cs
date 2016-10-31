@@ -26,6 +26,8 @@ namespace AutoBuilder.FillingStrategy
             var generator = ValueGeneratorFactory.GetValueGenerator(collectionItemType);
             var returnValue = (IList)Activator.CreateInstance(genericListType);
 
+            context.SetCurrentValueGeneratorType(collectionItemType);
+
             for (var i = 0; i < context.CollectionDegree; i++)
             {
                 returnValue.Add(generator.GenerateValue(context));
