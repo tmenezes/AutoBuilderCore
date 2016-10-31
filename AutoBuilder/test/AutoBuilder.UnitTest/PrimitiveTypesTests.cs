@@ -67,6 +67,42 @@ namespace AutoBuilder.UnitTest
         }
 
         [Fact]
+        public void Should_fill_float_property_successfully()
+        {
+            Assert.True(instance.FloatProperty > 0);
+        }
+
+        [Fact]
+        public void Should_fill_float_nullable_property_successfully()
+        {
+            Assert.True(instance.FloatNullableProperty > 0);
+        }
+
+        [Fact]
+        public void Should_fill_double_property_successfully()
+        {
+            Assert.True(instance.DoubleProperty > 0);
+        }
+
+        [Fact]
+        public void Should_fill_double_nullable_property_successfully()
+        {
+            Assert.True(instance.DoubleNullableProperty > 0);
+        }
+
+        [Fact]
+        public void Should_fill_decimal_property_successfully()
+        {
+            Assert.True(instance.DecimalProperty > 0);
+        }
+
+        [Fact]
+        public void Should_fill_decimal_nullable_property_successfully()
+        {
+            Assert.True(instance.DecimalNullableProperty > 0);
+        }
+
+        [Fact]
         public void Should_fill_DateTime_property_successfully()
         {
             Assert.NotNull(instance.DateTimeProperty);
@@ -117,6 +153,13 @@ namespace AutoBuilder.UnitTest
         public int? Int32NullableProperty { get; set; }
         public long Int64Property { get; set; }
         public long? Int64NullableProperty { get; set; }
+
+        public float FloatProperty { get; set; }
+        public float? FloatNullableProperty { get; set; }
+        public double DoubleProperty { get; set; }
+        public double? DoubleNullableProperty { get; set; }
+        public decimal DecimalProperty { get; set; }
+        public decimal? DecimalNullableProperty { get; set; }
 
         public DateTime DateTimeProperty { get; set; }
         public DateTime? DateTimeNullableProperty { get; set; }

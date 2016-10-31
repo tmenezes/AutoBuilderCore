@@ -13,6 +13,7 @@ namespace AutoBuilder.FillingStrategy
         static ValueGeneratorFactory()
         {
             var integerValueGenerator = new IntegerValueGenerator();
+            var floatValueGenerator = new FloatValueGenerator();
             var datetimeValueGenerator = new DateTimeValueGenerator();
             var booleanValueGenerator = new BooleanValueGenerator();
 
@@ -26,6 +27,13 @@ namespace AutoBuilder.FillingStrategy
                 { typeof(short?), integerValueGenerator },
                 { typeof(long), integerValueGenerator },
                 { typeof(long?), integerValueGenerator },
+
+                { typeof(float), floatValueGenerator },
+                { typeof(float?), floatValueGenerator },
+                { typeof(double), floatValueGenerator },
+                { typeof(double?), floatValueGenerator },
+                { typeof(decimal), floatValueGenerator },
+                { typeof(decimal?), floatValueGenerator },
 
                 { typeof(DateTime), datetimeValueGenerator },
                 { typeof(DateTime?), datetimeValueGenerator },
