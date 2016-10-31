@@ -91,6 +91,11 @@ namespace AutoBuilder
             return IsNullableTypeOfEnum(type);
         }
 
+        public static bool IsArray(Type type)
+        {
+            return IsCollection(type) && type.GetElementType() != null;
+        }
+
 
         private static bool IsWritableProperty(PropertyInfo p)
         {
@@ -112,8 +117,8 @@ namespace AutoBuilder
 
         private static void LoadCollectionTypes(IEnumerable<PropertyInfo> props)
         {
-            var collectionTypes = props.Where(p => IsCollection(p.PropertyType)).Select(p => p.PropertyType.GetTypeInfo().GenericTypeArguments.First());
-            var arrayTypes = props.Where(p => IsCollection(p.PropertyType)).Select(p => p.PropertyType.GetElementType());
+            var collectionTypes = props.Where(p => IsCollection(p.PropertyType) && !IsArray(p.PropertyType)).Select(p => p.PropertyType.GetTypeInfo().GenericTypeArguments.FirstOrDefault());
+            var arrayTypes = props.Where(p => IsCollection(p.PropertyType)).Select(p => p.PropertyType.GetElementType()).Where(t => t != null);
 
             var typesToLoad = collectionTypes.Union(arrayTypes)
                                              .Where(t => t != null)
