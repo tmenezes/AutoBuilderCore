@@ -12,6 +12,12 @@
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>AutoBuilder UnitTest Arrange Test Setup</tags>
+	<dependencies>      
+      <group targetFramework=".NETStandard1.3">
+        <dependency id="NETStandard.Library" version="1.6.0" />
+        <dependency id="System.Linq" version="4.1.0" />        
+      </group>
+    </dependencies>
   </metadata>
   <files>
     <file src="bin/Release/netstandard1.6/AutoBuilder.dll" target="lib\netstandard1.6" />
