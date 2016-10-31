@@ -20,7 +20,7 @@ namespace AutoBuilder
 
         public static void LoadType(Type type)
         {
-            lock (type)
+            lock ("lock_LoadType")
             {
                 if (IsAlreadyLoaded(type))
                 {
@@ -28,14 +28,11 @@ namespace AutoBuilder
                 }
 
                 var props = type.GetRuntimeProperties().Where(p => IsWritableProperty(p)).ToList();
-                var complexTypeProps = props.Where(p => IsComplexType(p.PropertyType) && !IsAlreadyLoaded(p.PropertyType)).ToList();
 
                 _properties.Add(type, props);
 
-                foreach (var prop in complexTypeProps)
-                {
-                    LoadType(prop.PropertyType);
-                }
+                LoadComplexTypes(props);
+                LoadCollectionTypes(props);
             }
         }
 
@@ -68,9 +65,10 @@ namespace AutoBuilder
             var hasAnyProperty = type.GetRuntimeProperties().Any();
             var isString = type == typeof(string);
             var isDateTima = type == typeof(DateTime);
-            var isNullable = Nullable.GetUnderlyingType(type) != null; //type.Namespace.Contains(typeof(Nullable).Namespace);
+            var isNullable = Nullable.GetUnderlyingType(type) != null;
+            var isCollection = IsCollection(type);
 
-            return hasAnyProperty && !isString && !isDateTima && !isNullable;
+            return hasAnyProperty && !isString && !isDateTima && !isNullable && !isCollection;
         }
 
         public static bool IsNullableType<T>(Type type) where T : struct
@@ -97,6 +95,36 @@ namespace AutoBuilder
         private static bool IsWritableProperty(PropertyInfo p)
         {
             return p.CanWrite && p.GetSetMethod(false) != null;
+        }
+
+        private static void LoadComplexTypes(IEnumerable<PropertyInfo> props)
+        {
+            var complexTypes = props.Where(p => IsComplexType(p.PropertyType))
+                                    .Where(p => !IsAlreadyLoaded(p.PropertyType))
+                                    .Select(p => p.PropertyType)
+                                    .ToList();
+
+            foreach (var prop in complexTypes)
+            {
+                LoadType(prop);
+            }
+        }
+
+        private static void LoadCollectionTypes(IEnumerable<PropertyInfo> props)
+        {
+            var collectionTypes = props.Where(p => IsCollection(p.PropertyType)).Select(p => p.PropertyType.GetTypeInfo().GenericTypeArguments.First());
+            var arrayTypes = props.Where(p => IsCollection(p.PropertyType)).Select(p => p.PropertyType.GetElementType());
+
+            var typesToLoad = collectionTypes.Union(arrayTypes)
+                                             .Where(t => t != null)
+                                             .Where(t => !IsAlreadyLoaded(t))
+                                             .Where(t => IsComplexType(t))
+                                             .ToList();
+
+            foreach (var prop in typesToLoad)
+            {
+                LoadType(prop);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -40,6 +41,8 @@ namespace AutoBuilder.FillingStrategy
 
                 { typeof(bool), booleanValueGenerator },
                 { typeof(bool?), booleanValueGenerator },
+
+                { typeof(IEnumerable), new CollectionValueGenerator() },
             };
         }
 
@@ -63,12 +66,13 @@ namespace AutoBuilder.FillingStrategy
 
         private static void AddValueGeneratorFor(Type type)
         {
-            var valueGenerator = TypeManager.IsComplexType(type)
-                ? new ComplexTypeValueGenerator(type)
-                : TypeManager.IsEnum(type) ? new EnumValueGenerator() : defaultValueGenerator;
-
             lock ("lock_AddValueGeneratorFor")
             {
+                var valueGenerator = TypeManager.IsComplexType(type) ? new ComplexTypeValueGenerator(type)
+                    : TypeManager.IsEnum(type) ? new EnumValueGenerator()
+                    : TypeManager.IsCollection(type) ? new CollectionValueGenerator() : defaultValueGenerator;
+
+
                 if (!_generators.ContainsKey(type))
                     _generators.Add(type, valueGenerator);
             }

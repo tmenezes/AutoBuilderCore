@@ -9,11 +9,13 @@ namespace AutoBuilder
         public PropertyInfo CurrentProperty { get; internal set; }
         public Type LastBuildedType { get; private set; }
         public object LastBuildedValue { get; private set; }
+        public int CollectionDegree { get; set; }
 
 
         public BuilderContext(Type targeType)
         {
             TargeType = targeType;
+            CollectionDegree = 3;
         }
 
         public static BuilderContext From<T>() where T : class, new()
