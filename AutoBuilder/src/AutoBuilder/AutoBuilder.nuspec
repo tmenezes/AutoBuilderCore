@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>AutoBuilderCore</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>AutoBuilder for .Net Core</title>
     <authors>Thiago Menezes</authors>
     <owners>Thiago Menezes</owners>
@@ -12,7 +12,7 @@
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>AutoBuilder UnitTest Arrange Test Setup</tags>
-	<dependencies>      
+  <dependencies>      
       <group targetFramework=".NETStandard1.3">
         <dependency id="NETStandard.Library" version="1.6.0" />
         <dependency id="System.Linq" version="4.1.0" />        
