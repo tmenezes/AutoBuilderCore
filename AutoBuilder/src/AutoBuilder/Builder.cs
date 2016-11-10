@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using AutoBuilder.FillingStrategy;
+﻿using AutoBuilder.FillingStrategy;
 
 namespace AutoBuilder
 {

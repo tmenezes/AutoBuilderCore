@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -9,7 +8,7 @@ namespace AutoBuilder
 {
     public static class TypeManager
     {
-        private static readonly List<Type> _collections = new List<Type>() { typeof(IEnumerable<>), typeof(IEnumerable) };
+        private static readonly List<Type> _collections = new List<Type> { typeof(IEnumerable<>), typeof(IEnumerable) };
         private static readonly IDictionary<Type, IEnumerable<PropertyInfo>> _properties;
 
         static TypeManager()

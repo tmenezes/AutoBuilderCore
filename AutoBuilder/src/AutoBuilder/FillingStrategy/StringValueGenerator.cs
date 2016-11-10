@@ -7,6 +7,6 @@ namespace AutoBuilder.FillingStrategy
         public object GenerateValue(BuilderContext context)
         {
             return $"{context.CurrentProperty.Name}-{Guid.NewGuid()}";
-        }       
+        }
     }
 }
