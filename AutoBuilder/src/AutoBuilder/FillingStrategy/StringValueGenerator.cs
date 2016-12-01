@@ -1,4 +1,5 @@
 ﻿using System;
+using AutoBuilder.Extensions;
 
 namespace AutoBuilder.FillingStrategy
 {
@@ -6,7 +7,7 @@ namespace AutoBuilder.FillingStrategy
     {
         public object GenerateValue(BuilderContext context)
         {
-            return $"{context.CurrentProperty.Name}-{Guid.NewGuid()}";
+            return $"{context.CurrentProperty.Name}-{Guid.NewGuid()}".SafeSubstring(context.StringMaxLength);
         }
     }
 }

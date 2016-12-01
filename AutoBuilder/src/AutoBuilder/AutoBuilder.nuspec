@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>AutoBuilderCore</id>
-    <version>1.0.1</version>
+    <version>1.0.3</version>
     <title>AutoBuilder for .Net Core</title>
     <authors>Thiago Menezes</authors>
     <owners>Thiago Menezes</owners>

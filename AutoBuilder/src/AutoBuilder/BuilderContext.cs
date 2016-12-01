@@ -13,6 +13,7 @@ namespace AutoBuilder
         public Type LastBuildedType { get; private set; }
         public object LastBuildedValue { get; private set; }
         public int CollectionDegree { get; set; }
+        public int StringMaxLength { get; set; }
         public IList<Type> ComplexTypesBuilded { get; set; }
 
         // constructors
@@ -20,6 +21,7 @@ namespace AutoBuilder
         {
             TargeType = targeType;
             CollectionDegree = 3;
+            StringMaxLength = 256;
             ComplexTypesBuilded = new List<Type>();
         }
 

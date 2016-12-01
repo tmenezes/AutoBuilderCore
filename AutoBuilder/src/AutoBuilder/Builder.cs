@@ -19,6 +19,12 @@ namespace AutoBuilder
             return this;
         }
 
+        public Builder<T> WithMaxSizedStrings(int maxLength)
+        {
+            _builderContext.StringMaxLength = maxLength;
+            return this;
+        }
+
         public T Build()
         {
             return ValueGeneratorFactory.GetValueGenerator<T>()

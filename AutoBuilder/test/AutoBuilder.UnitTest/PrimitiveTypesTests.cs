@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace AutoBuilder.UnitTest
@@ -9,11 +6,14 @@ namespace AutoBuilder.UnitTest
     public class PrimitiveTypesTests
     {
         readonly PrimitiveTypeOnlyClass instance;
+        readonly int stringMaxSize = 15;
 
         // arrange / act
         public PrimitiveTypesTests()
         {
-            instance = new Builder<PrimitiveTypeOnlyClass>().Build();
+            instance = new Builder<PrimitiveTypeOnlyClass>()
+                .WithMaxSizedStrings(stringMaxSize)
+                .Build();
         }
 
 
@@ -28,6 +28,13 @@ namespace AutoBuilder.UnitTest
         {
             Assert.NotNull(instance.StringProperty);
             Assert.NotEmpty(instance.StringProperty);
+        }
+
+        [Fact]
+        public void Should_have_the_right_size_for_the_string_property()
+        {
+            Assert.NotNull(instance.StringProperty);
+            Assert.True(instance.StringProperty.Length <= stringMaxSize);
         }
 
         [Fact]
