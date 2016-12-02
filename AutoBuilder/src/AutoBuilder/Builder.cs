@@ -19,7 +19,7 @@ namespace AutoBuilder
             return this;
         }
 
-        public Builder<T> WithMaxSizedStrings(int maxLength)
+        public Builder<T> WithStringsMaxSized(int maxLength)
         {
             _builderContext.StringMaxLength = maxLength;
             return this;

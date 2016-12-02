@@ -12,7 +12,7 @@ namespace AutoBuilder.UnitTest
         public PrimitiveTypesTests()
         {
             instance = new Builder<PrimitiveTypeOnlyClass>()
-                .WithMaxSizedStrings(stringMaxSize)
+                .WithStringsMaxSized(stringMaxSize)
                 .Build();
         }
 
