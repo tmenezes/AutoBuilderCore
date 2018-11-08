@@ -1,20 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EC19698D-AA85-4066-ADA1-136021ADA93D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{6789A41B-6F3C-4962-A84C-BAA5CBE4EC9B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DA4E1032-4EAE-41AC-A4DC-F34C88968B51}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AutoBuilder", "src\AutoBuilder\AutoBuilder.xproj", "{ECFB4CBB-74CB-4C93-9606-9F1C2FCFC29B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoBuilder", "src\AutoBuilder\AutoBuilder.csproj", "{ECFB4CBB-74CB-4C93-9606-9F1C2FCFC29B}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AutoBuilder.UnitTest", "test\AutoBuilder.UnitTest\AutoBuilder.UnitTest.xproj", "{3BE58067-4817-4B36-B3D9-929B0641F82F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoBuilder.UnitTest", "test\AutoBuilder.UnitTest\AutoBuilder.UnitTest.csproj", "{3BE58067-4817-4B36-B3D9-929B0641F82F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
