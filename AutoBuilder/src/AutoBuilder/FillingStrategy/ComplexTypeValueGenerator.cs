@@ -28,7 +28,7 @@ namespace AutoBuilder.FillingStrategy
 
                 prop.SetValue(returnValue, value);
 
-                context.UpdateLastBuidedType(prop.PropertyType, value);
+                context.UpdateLastBuildType(prop.PropertyType, value);
             }
 
             return returnValue;

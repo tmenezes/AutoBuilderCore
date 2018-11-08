@@ -6,23 +6,23 @@ namespace AutoBuilder
 {
     internal class BuilderContext
     {
-        public Type TargeType { get; }
+        public Type TargetType { get; }
         public PropertyInfo CurrentProperty { get; private set; }
         public Type CurrentValueGeneratorType { get; private set; }
         public bool CurrentPropertyIsCollection { get; private set; }
-        public Type LastBuildedType { get; private set; }
-        public object LastBuildedValue { get; private set; }
+        public Type LastBuildType { get; private set; }
+        public object LastBuildValue { get; private set; }
         public int CollectionDegree { get; set; }
         public int StringMaxLength { get; set; }
-        public IList<Type> ComplexTypesBuilded { get; set; }
+        public IList<Type> ComplexTypesBuild { get; set; }
 
         // constructors
-        public BuilderContext(Type targeType)
+        public BuilderContext(Type targetType)
         {
-            TargeType = targeType;
+            TargetType = targetType;
             CollectionDegree = 3;
             StringMaxLength = 256;
-            ComplexTypesBuilded = new List<Type>();
+            ComplexTypesBuild = new List<Type>();
         }
 
         public static BuilderContext From<T>() where T : class, new()
@@ -31,15 +31,15 @@ namespace AutoBuilder
         }
 
 
-        public void UpdateLastBuidedType(Type type, object value)
+        public void UpdateLastBuildType(Type type, object value)
         {
-            LastBuildedType = type;
-            LastBuildedValue = value;
+            LastBuildType = type;
+            LastBuildValue = value;
         }
 
         public bool IsInCircularReference(Type type)
         {
-            return TypeManager.IsComplexType(type) && ComplexTypesBuilded.Contains(type);
+            return TypeManager.IsComplexType(type) && ComplexTypesBuild.Contains(type);
         }
 
         public void SetCurrentProperty(PropertyInfo property)
@@ -50,7 +50,7 @@ namespace AutoBuilder
 
             if (TypeManager.IsComplexType(property.PropertyType))
             {
-                ComplexTypesBuilded.Add(property.PropertyType);
+                ComplexTypesBuild.Add(property.PropertyType);
             }
         }
 
@@ -60,7 +60,7 @@ namespace AutoBuilder
 
             if (TypeManager.IsComplexType(type))
             {
-                ComplexTypesBuilded.Add(type);
+                ComplexTypesBuild.Add(type);
             }
         }
 
