@@ -1,14 +1,12 @@
-using System;
+using AutoBuilder.Helpers;
 
 namespace AutoBuilder.FillingStrategy
 {
     internal class BooleanValueGenerator : IValueGenerator
     {
-        private static readonly Random _random = new Random(DateTime.Now.Millisecond);
-
         public object GenerateValue(BuilderContext context)
         {
-            var value = _random.Next() % 2 == 0;
+            var value = RandomData.GetBool();
 
             return TypeManager.IsNullableType<bool>(context.CurrentValueGeneratorType)
                        ? (bool?)value

@@ -1,11 +1,10 @@
 using System;
+using AutoBuilder.Helpers;
 
 namespace AutoBuilder.FillingStrategy
 {
     internal class EnumValueGenerator : IValueGenerator
     {
-        private static readonly Random _random = new Random(DateTime.Now.Millisecond);
-
         public object GenerateValue(BuilderContext context)
         {
             var enumType = TypeManager.IsNullableTypeOfEnum(context.CurrentValueGeneratorType)
@@ -13,7 +12,7 @@ namespace AutoBuilder.FillingStrategy
                 : context.CurrentValueGeneratorType;
 
             var enumValues = Enum.GetValues(enumType);
-            var index = _random.Next(0, enumValues.Length - 1);
+            var index = RandomData.GetInt(enumValues.Length - 1);
 
             return enumValues.GetValue(index);
         }
