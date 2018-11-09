@@ -14,6 +14,7 @@ namespace AutoBuilder
         public object LastBuildValue { get; private set; }
         public int CollectionDegree { get; set; }
         public int StringMaxLength { get; set; }
+        public string StringAlphabet { get; set; }
         public IList<Type> ComplexTypesBuild { get; set; }
 
         // constructors

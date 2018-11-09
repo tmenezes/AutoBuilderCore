@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Xunit;
 
 namespace AutoBuilder.UnitTest
@@ -7,12 +8,14 @@ namespace AutoBuilder.UnitTest
     {
         readonly PrimitiveTypeOnlyClass instance;
         readonly int stringMaxSize = 15;
+        readonly string stringAlphabet = "abcde";
 
         // arrange / act
         public PrimitiveTypesTests()
         {
             instance = new Builder<PrimitiveTypeOnlyClass>()
                 .WithStringsMaxSized(stringMaxSize)
+                .WithStringsAlphabet(stringAlphabet)
                 .Build();
         }
 
@@ -35,6 +38,13 @@ namespace AutoBuilder.UnitTest
         {
             Assert.NotNull(instance.StringProperty);
             Assert.True(instance.StringProperty.Length <= stringMaxSize);
+        }
+
+        [Fact]
+        public void Should_respect_the_right_alphabet_for_the_string_property()
+        {
+            Assert.NotNull(instance.StringProperty);
+            Assert.True(instance.StringProperty.All(c => stringAlphabet.Contains(c)));
         }
 
         [Fact]

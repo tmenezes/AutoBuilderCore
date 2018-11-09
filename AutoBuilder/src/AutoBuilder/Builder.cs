@@ -25,6 +25,12 @@ namespace AutoBuilder
             return this;
         }
 
+        public Builder<T> WithStringsAlphabet(string alphabet)
+        {
+            _builderContext.StringAlphabet = alphabet;
+            return this;
+        }
+
         public T Build()
         {
             return ValueGeneratorFactory.GetValueGenerator<T>()
