@@ -12,17 +12,17 @@ namespace AutoBuilder
         public bool CurrentPropertyIsCollection { get; private set; }
         public Type LastBuildType { get; private set; }
         public object LastBuildValue { get; private set; }
-        public int CollectionDegree { get; set; }
-        public int StringMaxLength { get; set; }
+        public int CollectionDegree { get; set; } = 3;
+        public int StringMaxLength { get; set; } = 256;
         public string StringAlphabet { get; set; }
+        public int? MinNumberValue { get; set; }
+        public int? MaxNumberValue { get; set; }
         public IList<Type> ComplexTypesBuild { get; set; }
 
         // constructors
         public BuilderContext(Type targetType)
         {
             TargetType = targetType;
-            CollectionDegree = 3;
-            StringMaxLength = 256;
             ComplexTypesBuild = new List<Type>();
         }
 

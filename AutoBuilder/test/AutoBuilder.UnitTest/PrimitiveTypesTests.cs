@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using FluentAssertions;
 using Xunit;
 
 namespace AutoBuilder.UnitTest
@@ -60,6 +61,23 @@ namespace AutoBuilder.UnitTest
         }
 
         [Fact]
+        public void Should_fill_int16_property_with_range_successfully()
+        {
+            var min = (short)100;
+            var max = (short)1000;
+
+            var newInstance = new Builder<PrimitiveTypeOnlyClass>()
+                       .WithMinNumberValueOf(min)
+                       .WithMaxNumberValueOf(max)
+                       .Build();
+
+            newInstance.Int16Property.Should().BeGreaterOrEqualTo(min);
+            newInstance.Int16Property.Should().BeLessOrEqualTo(max);
+            newInstance.Int16NullableProperty.Should().BeGreaterOrEqualTo(min);
+            newInstance.Int16NullableProperty.Should().BeLessOrEqualTo(max);
+        }
+
+        [Fact]
         public void Should_fill_int32_property_successfully()
         {
             Assert.True(instance.Int32Property > 0);
@@ -72,6 +90,23 @@ namespace AutoBuilder.UnitTest
         }
 
         [Fact]
+        public void Should_fill_int32_property_with_range_successfully()
+        {
+            var min = short.MaxValue + 1;
+            var max = min * 2;
+
+            var newInstance = new Builder<PrimitiveTypeOnlyClass>()
+                              .WithMinNumberValueOf(min)
+                              .WithMaxNumberValueOf(max)
+                              .Build();
+
+            newInstance.Int32Property.Should().BeGreaterOrEqualTo(min);
+            newInstance.Int32Property.Should().BeLessOrEqualTo(max);
+            newInstance.Int32NullableProperty.Should().BeGreaterOrEqualTo(min);
+            newInstance.Int32NullableProperty.Should().BeLessOrEqualTo(max);
+        }
+
+        [Fact]
         public void Should_fill_int64_property_successfully()
         {
             Assert.True(instance.Int64Property > 0);
@@ -81,6 +116,23 @@ namespace AutoBuilder.UnitTest
         public void Should_fill_int64_nullable_property_successfully()
         {
             Assert.True(instance.Int64NullableProperty > 0);
+        }
+
+        [Fact]
+        public void Should_fill_int64_property_with_range_successfully()
+        {
+            var min = short.MaxValue + 1;
+            var max = min * 2;
+
+            var newInstance = new Builder<PrimitiveTypeOnlyClass>()
+                              .WithMinNumberValueOf(min)
+                              .WithMaxNumberValueOf(max)
+                              .Build();
+
+            newInstance.Int64Property.Should().BeGreaterOrEqualTo(min);
+            newInstance.Int64Property.Should().BeLessOrEqualTo(max);
+            newInstance.Int64NullableProperty.Should().BeGreaterOrEqualTo(min);
+            newInstance.Int64NullableProperty.Should().BeLessOrEqualTo(max);
         }
 
         [Fact]

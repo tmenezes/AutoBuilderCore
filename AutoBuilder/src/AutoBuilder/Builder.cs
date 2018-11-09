@@ -31,6 +31,18 @@ namespace AutoBuilder
             return this;
         }
 
+        public Builder<T> WithMinNumberValueOf(int value)
+        {
+            _builderContext.MinNumberValue = value;
+            return this;
+        }
+
+        public Builder<T> WithMaxNumberValueOf(int value)
+        {
+            _builderContext.MaxNumberValue = value;
+            return this;
+        }
+
         public T Build()
         {
             return ValueGeneratorFactory.GetValueGenerator<T>()
