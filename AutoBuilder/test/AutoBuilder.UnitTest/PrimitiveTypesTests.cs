@@ -148,6 +148,33 @@ namespace AutoBuilder.UnitTest
         }
 
         [Fact]
+        public void Should_fill_all_float_numbers_properties_with_range_successfully()
+        {
+            var min = 10;
+            var max = 50;
+
+            var newInstance = new Builder<PrimitiveTypeOnlyClass>()
+                              .WithMinNumberValueOf(min)
+                              .WithMaxNumberValueOf(max)
+                              .Build();
+
+            newInstance.FloatProperty.Should().BeGreaterOrEqualTo(min);
+            newInstance.FloatProperty.Should().BeLessOrEqualTo(max);
+            newInstance.FloatNullableProperty.Should().BeGreaterOrEqualTo(min);
+            newInstance.FloatNullableProperty.Should().BeLessOrEqualTo(max);
+
+            newInstance.DoubleProperty.Should().BeGreaterOrEqualTo(min);
+            newInstance.DoubleProperty.Should().BeLessOrEqualTo(max);
+            newInstance.DoubleNullableProperty.Should().BeGreaterOrEqualTo(min);
+            newInstance.DoubleNullableProperty.Should().BeLessOrEqualTo(max);
+
+            newInstance.DecimalProperty.Should().BeGreaterOrEqualTo(min);
+            newInstance.DecimalProperty.Should().BeLessOrEqualTo(max);
+            newInstance.DecimalNullableProperty.Should().BeGreaterOrEqualTo(min);
+            newInstance.DecimalNullableProperty.Should().BeLessOrEqualTo(max);
+        }
+
+        [Fact]
         public void Should_fill_double_property_successfully()
         {
             Assert.True(instance.DoubleProperty > 0);
