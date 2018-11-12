@@ -44,6 +44,8 @@ namespace AutoBuilder.FillingStrategy
             var generator = ValueGeneratorFactory.GetValueGenerator(collectionItemType);
             var returnValue = Array.CreateInstance(collectionItemType, context.CollectionDegree);
 
+            context.SetCurrentValueGeneratorType(collectionItemType);
+
             for (var i = 0; i < context.CollectionDegree; i++)
             {
                 returnValue.SetValue(generator.GenerateValue(context), i);

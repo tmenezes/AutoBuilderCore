@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace AutoBuilder.UnitTest
@@ -77,6 +75,20 @@ namespace AutoBuilder.UnitTest
             Assert.NotNull(instance.ArrayProperty);
             Assert.True(instance.ArrayProperty.Any());
         }
+
+        [Fact]
+        public void Should_fill_char_array_property_successfully()
+        {
+            Assert.NotNull(instance.CharArrayProperty);
+            Assert.True(instance.CharArrayProperty.Any());
+        }
+
+        [Fact]
+        public void Should_fill_byte_array_property_successfully()
+        {
+            Assert.NotNull(instance.ByteArrayProperty);
+            Assert.True(instance.ByteArrayProperty.Any());
+        }
     }
 
     internal class CollectionTestClass
@@ -89,5 +101,7 @@ namespace AutoBuilder.UnitTest
         public List<double> ListOfDoubleProperty { get; set; }
         public IList<PrimitiveTypeOnlyClass> IListProperty { get; set; }
         public PrimitiveTypeOnlyClass[] ArrayProperty { get; set; }
+        public char[] CharArrayProperty { get; set; }
+        public byte[] ByteArrayProperty { get; set; }
     }
 }
