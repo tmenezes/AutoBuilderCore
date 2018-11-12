@@ -80,14 +80,14 @@ namespace AutoBuilder.UnitTest
         public void Should_fill_char_array_property_successfully()
         {
             Assert.NotNull(instance.CharArrayProperty);
-            Assert.True(instance.CharArrayProperty.Any());
+            Assert.True(instance.CharArrayProperty.Any(i => i > 0));
         }
 
         [Fact]
         public void Should_fill_byte_array_property_successfully()
         {
             Assert.NotNull(instance.ByteArrayProperty);
-            Assert.True(instance.ByteArrayProperty.Any());
+            Assert.True(instance.ByteArrayProperty.Any(i => i > 0));
         }
     }
 

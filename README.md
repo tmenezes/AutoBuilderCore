@@ -7,12 +7,12 @@ It is a tool for building unit tests arranges.
 using AutoBuilder;
 // ...
 var builder = new Builder<MyModel>()
-    .WithStringsMaxSized(50)            // strings with max size of 50
-    .WithStringsAlphabet("abcdefgh...") // strings using only those specific characters
-    .WithMinNumberValueOf(1)            // numbers generate with min value of 1
-    .WithMaxNumberValueOf(10);          // numbers generate with max value of 10
+    .WithStringsMaxSized(50)           // strings with max size of 50
+    .WithStringsAlphabet("abcdef...")  // strings using only those specific characters
+    .WithMinNumberValueOf(1)           // numbers with min value of 1
+    .WithMaxNumberValueOf(10);         // numbers with max value of 10
 
-var myClassInstance = builder.Build();  // model instance generate respecting the config above
+var myClassInstance = builder.Build(); // model instance generated respecting the config above
 ```
 
 ## Features
@@ -24,10 +24,10 @@ var myClassInstance = builder.Build();  // model instance generate respecting th
 1. Collection support
 1. Enum support
 
-## Types supporteds
+## Supported Types
 1. **User defined** types
 1. string (propertyname + GUID)
-1. int, short, long (random numbers)
+1. int, short, long, char, byte (random numbers)
 1. float, double, decimal (random float numbers)
 1. Nullable
 1. bool 

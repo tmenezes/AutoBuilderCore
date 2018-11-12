@@ -12,8 +12,12 @@ namespace AutoBuilder.FillingStrategy
         {
             _generatorFunc = new Dictionary<Type, Func<int?, int?, object>>()
             {
+                { typeof(byte), (min, max) => GetByte(min, max) },
+                { typeof(byte?), (min, max) => (byte?)GetByte(min, max) },
                 { typeof(short), (min, max) => GetShort(min, max) },
                 { typeof(short?), (min, max) => (short?)GetShort(min, max) },
+                { typeof(char), (min, max) => (char)GetShort(min, max) },
+                { typeof(char?), (min, max) => (char?)GetShort(min, max) },
                 { typeof(int), (min, max) => GetInt(min, max) },
                 { typeof(int?), (min, max) => (int?)GetInt(min, max) },
                 { typeof(long), (min, max) => GetLong(min, max) },
@@ -29,6 +33,14 @@ namespace AutoBuilder.FillingStrategy
         }
 
         // private
+        private static byte GetByte(int? min, int? max)
+        {
+            return (byte)RandomData.GetInt(
+                min.GetValueOrDefault() > byte.MaxValue ? 0 : min.GetValueOrDefault(),
+                max.GetValueOrDefault() > byte.MaxValue ? byte.MaxValue : max ?? byte.MaxValue
+            );
+        }
+
         private static short GetShort(int? min, int? max)
         {
             return (short)RandomData.GetInt(

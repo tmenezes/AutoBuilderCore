@@ -25,6 +25,10 @@ namespace AutoBuilder.FillingStrategy
                 { typeof(int?), integerValueGenerator },
                 { typeof(short), integerValueGenerator },
                 { typeof(short?), integerValueGenerator },
+                { typeof(char), integerValueGenerator },
+                { typeof(char?), integerValueGenerator },
+                { typeof(byte), integerValueGenerator },
+                { typeof(byte?), integerValueGenerator },
                 { typeof(long), integerValueGenerator },
                 { typeof(long?), integerValueGenerator },
 

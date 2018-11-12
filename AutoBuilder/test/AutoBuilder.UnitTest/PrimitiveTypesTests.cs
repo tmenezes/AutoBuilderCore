@@ -49,6 +49,64 @@ namespace AutoBuilder.UnitTest
         }
 
         [Fact]
+        public void Should_fill_byte_property_successfully()
+        {
+            Assert.True(instance.ByteProperty > 0);
+        }
+
+        [Fact]
+        public void Should_fill_byte_nullable_property_successfully()
+        {
+            Assert.True(instance.ByteNullableProperty > 0);
+        }
+
+        [Fact]
+        public void Should_fill_byte_property_with_range_successfully()
+        {
+            var min = (byte)10;
+            var max = (byte)100;
+
+            var newInstance = new Builder<PrimitiveTypeOnlyClass>()
+                              .WithMinNumberValueOf(min)
+                              .WithMaxNumberValueOf(max)
+                              .Build();
+
+            newInstance.ByteProperty.Should().BeGreaterOrEqualTo(min);
+            newInstance.ByteProperty.Should().BeLessOrEqualTo(max);
+            newInstance.ByteNullableProperty.Should().BeGreaterOrEqualTo(min);
+            newInstance.ByteNullableProperty.Should().BeLessOrEqualTo(max);
+        }
+
+        [Fact]
+        public void Should_fill_char_property_successfully()
+        {
+            Assert.True(instance.CharProperty > 0);
+        }
+
+        [Fact]
+        public void Should_fill_char_nullable_property_successfully()
+        {
+            Assert.True(instance.CharNullableProperty > 0);
+        }
+
+        [Fact]
+        public void Should_fill_char_property_with_range_successfully()
+        {
+            var min = (char)10;
+            var max = (char)100;
+
+            var newInstance = new Builder<PrimitiveTypeOnlyClass>()
+                              .WithMinNumberValueOf(min)
+                              .WithMaxNumberValueOf(max)
+                              .Build();
+
+            newInstance.CharProperty.Should().BeGreaterOrEqualTo(min);
+            newInstance.CharProperty.Should().BeLessOrEqualTo(max);
+            Assert.True(newInstance.CharNullableProperty >= min);
+            Assert.True(newInstance.CharNullableProperty <= max);
+        }
+
+        [Fact]
         public void Should_fill_int16_property_successfully()
         {
             Assert.True(instance.Int16Property > 0);
@@ -243,6 +301,10 @@ namespace AutoBuilder.UnitTest
 
         public string StringProperty { get; set; }
 
+        public byte ByteProperty { get; set; }
+        public byte? ByteNullableProperty { get; set; }
+        public char CharProperty { get; set; }
+        public char? CharNullableProperty { get; set; }
         public short Int16Property { get; set; }
         public short? Int16NullableProperty { get; set; }
         public int Int32Property { get; set; }
