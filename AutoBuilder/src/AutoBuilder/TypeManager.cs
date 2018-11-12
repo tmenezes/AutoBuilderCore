@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -9,11 +10,11 @@ namespace AutoBuilder
     public static class TypeManager
     {
         private static readonly List<Type> _collections = new List<Type> { typeof(IEnumerable<>), typeof(IEnumerable) };
-        private static readonly IDictionary<Type, IEnumerable<PropertyInfo>> _properties;
+        private static readonly ConcurrentDictionary<Type, IEnumerable<PropertyInfo>> _properties;
 
         static TypeManager()
         {
-            _properties = new Dictionary<Type, IEnumerable<PropertyInfo>>();
+            _properties = new ConcurrentDictionary<Type, IEnumerable<PropertyInfo>>();
         }
 
 
@@ -28,7 +29,7 @@ namespace AutoBuilder
 
                 var props = type.GetRuntimeProperties().Where(p => IsWritableProperty(p)).ToList();
 
-                _properties.Add(type, props);
+                _properties.TryAdd(type, props);
 
                 LoadComplexTypes(props);
                 LoadCollectionTypes(props);
@@ -37,12 +38,15 @@ namespace AutoBuilder
 
         public static IEnumerable<PropertyInfo> GetProperties(Type type)
         {
-            if (!IsAlreadyLoaded(type))
+            lock ("lock_Properties")
             {
-                LoadType(type);
-            }
+                if (!IsAlreadyLoaded(type))
+                {
+                    LoadType(type);
+                }
 
-            return _properties[type];
+                return _properties[type];
+            }
         }
 
 
